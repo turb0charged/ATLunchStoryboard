@@ -1,0 +1,33 @@
+## based on github/gitignore/Swift.gitignore
+## Swift Package Manager
+.build/
+
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+## User settings
+xcuserdata/
+
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# fastlane
+#
+# It is recommended to not store the screenshots in the git repo.
+# Instead, use fastlane to re-generate the screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
+
+## Obj-C/Swift specific
+*.hmap
+
+##Custom
+keys.plist
