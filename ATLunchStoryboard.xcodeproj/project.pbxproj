@@ -17,6 +17,9 @@
 		3D30239A272D46D600B8BA64 /* ATLunchStoryboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D302399272D46D600B8BA64 /* ATLunchStoryboardTests.swift */; };
 		3D3023A4272D46D600B8BA64 /* ATLunchStoryboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3023A3272D46D600B8BA64 /* ATLunchStoryboardUITests.swift */; };
 		3D3023A6272D46D600B8BA64 /* ATLunchStoryboardUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3023A5272D46D600B8BA64 /* ATLunchStoryboardUITestsLaunchTests.swift */; };
+		3D69983C272DFCBC00F0A0E7 /* keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D69983B272DFCBC00F0A0E7 /* keys.plist */; };
+		3D69983F272EA99200F0A0E7 /* NearbyQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D69983E272EA99200F0A0E7 /* NearbyQueryResult.swift */; };
+		3D699841272EB6C500F0A0E7 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D699840272EB6C500F0A0E7 /* Restaurant.swift */; };
 		3DA63ABA272D9539009E4F7E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA63AB9272D9539009E4F7E /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +55,9 @@
 		3D30239F272D46D600B8BA64 /* ATLunchStoryboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATLunchStoryboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3023A3272D46D600B8BA64 /* ATLunchStoryboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLunchStoryboardUITests.swift; sourceTree = "<group>"; };
 		3D3023A5272D46D600B8BA64 /* ATLunchStoryboardUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATLunchStoryboardUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3D69983B272DFCBC00F0A0E7 /* keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = keys.plist; sourceTree = "<group>"; };
+		3D69983E272EA99200F0A0E7 /* NearbyQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyQueryResult.swift; sourceTree = "<group>"; };
+		3D699840272EB6C500F0A0E7 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,7 @@
 		3D30237E272D46D500B8BA64 /* ATLunchStoryboard */ = {
 			isa = PBXGroup;
 			children = (
+				3D69983D272EA97000F0A0E7 /* Models */,
 				3D30237F272D46D500B8BA64 /* AppDelegate.swift */,
 				3D302381272D46D500B8BA64 /* SceneDelegate.swift */,
 				3D302383272D46D500B8BA64 /* ViewController.swift */,
@@ -111,6 +118,7 @@
 				3D30238D272D46D600B8BA64 /* LaunchScreen.storyboard */,
 				3D302390272D46D600B8BA64 /* Info.plist */,
 				3D302388272D46D500B8BA64 /* ATLunchStoryboard.xcdatamodeld */,
+				3D69983B272DFCBC00F0A0E7 /* keys.plist */,
 			);
 			path = ATLunchStoryboard;
 			sourceTree = "<group>";
@@ -130,6 +138,15 @@
 				3D3023A5272D46D600B8BA64 /* ATLunchStoryboardUITestsLaunchTests.swift */,
 			);
 			path = ATLunchStoryboardUITests;
+			sourceTree = "<group>";
+		};
+		3D69983D272EA97000F0A0E7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D69983E272EA99200F0A0E7 /* NearbyQueryResult.swift */,
+				3D699840272EB6C500F0A0E7 /* Restaurant.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D69983C272DFCBC00F0A0E7 /* keys.plist in Resources */,
 				3D30238F272D46D600B8BA64 /* LaunchScreen.storyboard in Resources */,
 				3D30238C272D46D600B8BA64 /* Assets.xcassets in Resources */,
 				3D302387272D46D500B8BA64 /* Main.storyboard in Resources */,
@@ -271,8 +289,10 @@
 			files = (
 				3D302384272D46D500B8BA64 /* ViewController.swift in Sources */,
 				3D302380272D46D500B8BA64 /* AppDelegate.swift in Sources */,
+				3D699841272EB6C500F0A0E7 /* Restaurant.swift in Sources */,
 				3D30238A272D46D500B8BA64 /* ATLunchStoryboard.xcdatamodeld in Sources */,
 				3D302382272D46D500B8BA64 /* SceneDelegate.swift in Sources */,
+				3D69983F272EA99200F0A0E7 /* NearbyQueryResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
