@@ -1,9 +1,9 @@
-//
-//  ViewController.swift
-//  ATLunchStoryboard
-//
-//  Created by Hector Castillo on 10/30/21.
-//
+    //
+    //  ViewController.swift
+    //  ATLunchStoryboard
+    //
+    //  Created by Hector Castillo on 10/30/21.
+    //
 
 import UIKit
 import CoreLocation
@@ -36,14 +36,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+            // Do any additional setup after loading the view.
+        self.navigationItem.title = "AT Lunch"
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
 
         view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
-            make.top.right.left.bottom.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
+            make.right.left.bottom.equalToSuperview()
         }
 
         setupMapView()
@@ -63,6 +65,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                               animated: true)
         }
         let placesURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurants&location=\(manager.location?.coordinate.latitude.description ?? "")%2C\(manager.location?.coordinate.longitude.description ?? "")&radius=1500&type=restaurant&key=\(apiKey)"
+        print(placesURLString)
         if let placesURL = URL(string: placesURLString) {
             let request = URLRequest(url: placesURL)
             URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
@@ -70,10 +73,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                     print("data is empty \(error?.localizedDescription ?? "")")
                     return
                 }
-
-                let nearbyQueryResult = try? JSONDecoder().decode(NearbyQueryResult.self, from: data)
-                if let nearbyResults = nearbyQueryResult {
-                    self?.placeResultPins(nearbyResults: nearbyResults)
+                let jsonString = String(data: data, encoding: .utf8)
+                print(jsonString)
+                do {
+                    let nearbyQueryResult = try JSONDecoder().decode(NearbyQueryResult.self, from: data)
+                        //                    if let nearbyResults = nearbyQueryResult {
+                    self?.placeResultPins(nearbyResults: nearbyQueryResult)
+                        //                    }
+                } catch let error as NSError {
+                    print("decode error \(error.localizedDescription)")
+                    print(String(describing: error))
                 }
             }.resume()
         }
@@ -82,7 +91,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func placeResultPins(nearbyResults: NearbyQueryResult) {
         var restaurants: [Restaurant] = []
         nearbyResults.results.forEach { result in
-            let newRestaurant = Restaurant(name: result.name, coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng), info: result.businessStatus.rawValue)
+            let newRestaurant = Restaurant(name: result.name, coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng), info: result.businessStatus)
             restaurants.append(newRestaurant)
         }
 
@@ -91,7 +100,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
 
-    // MARK: - CLLocationManagerDelegate
+        // MARK: - CLLocationManagerDelegate
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         switch manager.authorizationStatus {
             case .authorizedWhenInUse,.authorizedAlways:
@@ -101,7 +110,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             case .denied, .restricted:
                 print("not gonna work, bud")
                 manager.requestWhenInUseAuthorization()
-                //graceful way to tell user they can't use the app?
+                    //graceful way to tell user they can't use the app?
             default:
                 print("something new happened without apple telling us")
         }

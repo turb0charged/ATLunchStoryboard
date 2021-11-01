@@ -21,7 +21,7 @@ struct NearbyQueryResult: Codable {
 
     // MARK: - Result
 struct Result: Codable {
-    let businessStatus: BusinessStatus
+    let businessStatus: String
     let geometry: Geometry
     let icon: String
     let iconBackgroundColor: IconBackgroundColor
@@ -33,8 +33,8 @@ struct Result: Codable {
     let plusCode: PlusCode
     let rating: Double
     let reference: String
-    let scope: Scope
-    let types: [TypeElement]
+    let scope: String
+    let types: [String]
     let userRatingsTotal: Int
     let vicinity: String
     let priceLevel: Int?
