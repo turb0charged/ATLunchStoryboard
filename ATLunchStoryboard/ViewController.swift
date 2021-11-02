@@ -10,7 +10,8 @@ import CoreLocation
 import MapKit
 import SnapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating {
+
     private var locationManager: CLLocationManager?
 
     private let mapView: MKMapView = {
@@ -38,6 +39,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
             // Do any additional setup after loading the view.
         self.navigationItem.title = "AT Lunch"
+        view.backgroundColor = .white
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
@@ -47,6 +49,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             make.right.left.bottom.equalToSuperview()
         }
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Type something here to search"
+        navigationItem.searchController = search
 
         setupMapView()
     }
@@ -78,7 +85,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 do {
                     let nearbyQueryResult = try JSONDecoder().decode(NearbyQueryResult.self, from: data)
                         //                    if let nearbyResults = nearbyQueryResult {
-                    self?.placeResultPins(nearbyResults: nearbyQueryResult)
+                    DispatchQueue.main.async {
+                        self?.placeResultPins(nearbyResults: nearbyQueryResult)
+                    }
                         //                    }
                 } catch let error as NSError {
                     print("decode error \(error.localizedDescription)")
@@ -114,6 +123,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             default:
                 print("something new happened without apple telling us")
         }
+    }
+
+    // MARK: - UISearchResultsUpdating
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        print(text)
     }
 }
 

@@ -10,7 +10,6 @@
 		3D302380272D46D500B8BA64 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D30237F272D46D500B8BA64 /* AppDelegate.swift */; };
 		3D302382272D46D500B8BA64 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D302381272D46D500B8BA64 /* SceneDelegate.swift */; };
 		3D302384272D46D500B8BA64 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D302383272D46D500B8BA64 /* ViewController.swift */; };
-		3D302387272D46D500B8BA64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D302385272D46D500B8BA64 /* Main.storyboard */; };
 		3D30238A272D46D500B8BA64 /* ATLunchStoryboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D302388272D46D500B8BA64 /* ATLunchStoryboard.xcdatamodeld */; };
 		3D30238C272D46D600B8BA64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D30238B272D46D600B8BA64 /* Assets.xcassets */; };
 		3D30238F272D46D600B8BA64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D30238D272D46D600B8BA64 /* LaunchScreen.storyboard */; };
@@ -45,7 +44,6 @@
 		3D30237F272D46D500B8BA64 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D302381272D46D500B8BA64 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3D302383272D46D500B8BA64 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3D302386272D46D500B8BA64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D302389272D46D500B8BA64 /* ATLunchStoryboard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ATLunchStoryboard.xcdatamodel; sourceTree = "<group>"; };
 		3D30238B272D46D600B8BA64 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D30238E272D46D600B8BA64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				3D30237F272D46D500B8BA64 /* AppDelegate.swift */,
 				3D302381272D46D500B8BA64 /* SceneDelegate.swift */,
 				3D302383272D46D500B8BA64 /* ViewController.swift */,
-				3D302385272D46D500B8BA64 /* Main.storyboard */,
 				3D30238B272D46D600B8BA64 /* Assets.xcassets */,
 				3D30238D272D46D600B8BA64 /* LaunchScreen.storyboard */,
 				3D302390272D46D600B8BA64 /* Info.plist */,
@@ -262,7 +259,6 @@
 				3D69983C272DFCBC00F0A0E7 /* keys.plist in Resources */,
 				3D30238F272D46D600B8BA64 /* LaunchScreen.storyboard in Resources */,
 				3D30238C272D46D600B8BA64 /* Assets.xcassets in Resources */,
-				3D302387272D46D500B8BA64 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,14 +325,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3D302385272D46D500B8BA64 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D302386272D46D500B8BA64 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3D30238D272D46D600B8BA64 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -474,9 +462,9 @@
 				DEVELOPMENT_TEAM = 7PL9UPLR6R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ATLunchStoryboard/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to find restaurants nearby.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -502,9 +490,9 @@
 				DEVELOPMENT_TEAM = 7PL9UPLR6R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ATLunchStoryboard/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app uses your location to find restaurants nearby.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
