@@ -24,7 +24,7 @@ struct Result: Codable {
     let businessStatus: String
     let geometry: Geometry
     let icon: String
-    let iconBackgroundColor: IconBackgroundColor
+    let iconBackgroundColor: String
     let iconMaskBaseURI: String
     let name: String
     let openingHours: OpeningHours?
@@ -56,9 +56,6 @@ struct Result: Codable {
     }
 }
 
-enum BusinessStatus: String, Codable {
-    case operational = "OPERATIONAL"
-}
 
     // MARK: - Geometry
 struct Geometry: Codable {
@@ -76,9 +73,6 @@ struct Viewport: Codable {
     let northeast, southwest: Location
 }
 
-enum IconBackgroundColor: String, Codable {
-    case ff9E67 = "#FF9E67"
-}
 
     // MARK: - OpeningHours
 struct OpeningHours: Codable {
@@ -112,22 +106,6 @@ struct PlusCode: Codable {
         case compoundCode = "compound_code"
         case globalCode = "global_code"
     }
-}
-
-enum Scope: String, Codable {
-    case google = "GOOGLE"
-}
-
-enum TypeElement: String, Codable {
-    case bar = "bar"
-    case cafe = "cafe"
-    case establishment = "establishment"
-    case food = "food"
-    case mealDelivery = "meal_delivery"
-    case mealTakeaway = "meal_takeaway"
-    case pointOfInterest = "point_of_interest"
-    case restaurant = "restaurant"
-    case store = "store"
 }
 
     // MARK: - Encode/decode helpers

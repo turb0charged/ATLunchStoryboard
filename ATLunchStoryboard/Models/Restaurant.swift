@@ -9,13 +9,17 @@ import UIKit
 import MapKit
 
 class Restaurant: NSObject, MKAnnotation {
-    var name: String
+    var title: String?
     var coordinate: CLLocationCoordinate2D
     var info: String
+    var rating: Double
+    var userRatingsTotal: Int
 
-    init(name: String, coordinate: CLLocationCoordinate2D, info: String) {
-        self.name = name
+    init(title: String, coordinate: CLLocationCoordinate2D, info: String, rating: Double, userRatingsTotal: Int) {
+        self.title = title
         self.coordinate = coordinate
         self.info = info
+        self.rating = rating
+        self.userRatingsTotal = userRatingsTotal
     }
 }

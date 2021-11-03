@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 import SnapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating {
+class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, MKMapViewDelegate {
 
     private var locationManager: CLLocationManager?
 
@@ -45,6 +45,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         locationManager?.requestWhenInUseAuthorization()
 
         view.addSubview(mapView)
+        mapView.delegate = self
         mapView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             make.right.left.bottom.equalToSuperview()
@@ -84,11 +85,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
                 print(jsonString)
                 do {
                     let nearbyQueryResult = try JSONDecoder().decode(NearbyQueryResult.self, from: data)
-                        //                    if let nearbyResults = nearbyQueryResult {
                     DispatchQueue.main.async {
                         self?.placeResultPins(nearbyResults: nearbyQueryResult)
                     }
-                        //                    }
                 } catch let error as NSError {
                     print("decode error \(error.localizedDescription)")
                     print(String(describing: error))
@@ -100,7 +99,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
     func placeResultPins(nearbyResults: NearbyQueryResult) {
         var restaurants: [Restaurant] = []
         nearbyResults.results.forEach { result in
-            let newRestaurant = Restaurant(name: result.name, coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng), info: result.businessStatus)
+            let newRestaurant = Restaurant(title: result.name,
+                                           coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng),
+                                           info: result.businessStatus,
+                                           rating: result.rating,
+                                           userRatingsTotal: result.userRatingsTotal)
             restaurants.append(newRestaurant)
         }
 
@@ -125,7 +128,27 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         }
     }
 
-    // MARK: - UISearchResultsUpdating
+        // MARK: - MKMapViewDelegate
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is Restaurant else {
+            return nil
+        }
+        let identifier = "Restaurant"
+
+
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView?.clusteringIdentifier = identifier
+        } else {
+            annotationView?.annotation = annotation
+        }
+
+        return annotationView
+    }
+
+        // MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         print(text)
