@@ -50,6 +50,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             make.right.left.bottom.equalToSuperview()
         }
+
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
@@ -73,7 +74,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
                               animated: true)
         }
         let placesURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurants&location=\(manager.location?.coordinate.latitude.description ?? "")%2C\(manager.location?.coordinate.longitude.description ?? "")&radius=1500&type=restaurant&key=\(apiKey)"
-        print(placesURLString)
+
         if let placesURL = URL(string: placesURLString) {
             let request = URLRequest(url: placesURL)
             URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
@@ -82,7 +83,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
                     return
                 }
                 let jsonString = String(data: data, encoding: .utf8)
-                print(jsonString)
                 do {
                     let nearbyQueryResult = try JSONDecoder().decode(NearbyQueryResult.self, from: data)
                     DispatchQueue.main.async {
@@ -103,7 +103,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
                                            coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng),
                                            info: result.businessStatus,
                                            rating: result.rating,
-                                           userRatingsTotal: result.userRatingsTotal)
+                                           userRatingsTotal: result.userRatingsTotal,
+                                           priceLevel: result.priceLevel,
+                                           photoReference: result.photos?.first?.photoReference)
             restaurants.append(newRestaurant)
         }
 
@@ -144,6 +146,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         } else {
             annotationView?.annotation = annotation
         }
+
+        annotationView?.canShowCallout = true
+        let detailView = RestaurantCalloutView(annotation: annotation)
+        detailView.snp.makeConstraints { make in
+            make.width.equalTo(UIScreen.main.bounds.width * 0.70)
+            make.height.equalTo(UIScreen.main.bounds.height * 0.10)
+        }
+        annotationView?.detailCalloutAccessoryView = detailView
+//        let leftAccesoryView = UIImageView(image: UIImage(systemName: "fork.knife.circle.fill")!)
+//        annotationView?.leftCalloutAccessoryView = leftAccesoryView
 
         return annotationView
     }

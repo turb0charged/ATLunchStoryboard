@@ -14,12 +14,19 @@ class Restaurant: NSObject, MKAnnotation {
     var info: String
     var rating: Double
     var userRatingsTotal: Int
+    var priceLevel: Int?
+    var photoReference: String?
+    var priceLevelString: String {
+        return String(repeating: "$", count: priceLevel ?? 0)
+    }
 
-    init(title: String, coordinate: CLLocationCoordinate2D, info: String, rating: Double, userRatingsTotal: Int) {
+    init(title: String, coordinate: CLLocationCoordinate2D, info: String, rating: Double, userRatingsTotal: Int, priceLevel: Int? = nil, photoReference: String? = nil) {
         self.title = title
         self.coordinate = coordinate
         self.info = info
         self.rating = rating
         self.userRatingsTotal = userRatingsTotal
+        self.priceLevel = priceLevel
+        self.photoReference = photoReference
     }
 }
