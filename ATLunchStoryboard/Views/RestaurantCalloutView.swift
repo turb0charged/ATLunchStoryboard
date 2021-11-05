@@ -54,8 +54,8 @@ class RestaurantCalloutView:  UIView{
             if let photoRef = restaurantAnnotation.photoReference {
                 if let url = URL(string: GooglePlacesConstants.BaseURL + GooglePlacesConstants.Paths.PlacePhoto) {
                     let referenceQuery = URLQueryItem(name: "photo_reference", value: photoRef)
-                    let widthQuery = URLQueryItem(name: "maxwidth", value: "50")
-                    let heightQuery = URLQueryItem(name: "maxheight", value: "50")
+                    let widthQuery = URLQueryItem(name: "maxwidth", value: "100")
+                    let heightQuery = URLQueryItem(name: "maxheight", value: "100")
                     let keyQuery = URLQueryItem(name: "key", value: "AIzaSyDQSd210wKX_7cz9MELkxhaEOUhFP0AkSk")
                     if let finalizedURL = url.appending([referenceQuery,widthQuery,heightQuery,keyQuery]) {
                         restaurantImageView.sd_setImage(with: finalizedURL, placeholderImage: UIImage(systemName: "fork.knife.circle.fill")!)

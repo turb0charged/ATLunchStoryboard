@@ -22,6 +22,18 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         return mapView
     }()
 
+    private let tableViewButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
+        button.setTitle("List", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 8
+        button.layer.masksToBounds = true
+        return button
+    }()
+
     private var apiKey: String {
         get {
             guard let filePath = Bundle.main.path(forResource: "keys", ofType: "plist") else {
@@ -50,6 +62,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             make.right.left.bottom.equalToSuperview()
         }
+
+        mapView.addSubview(tableViewButton)
+        tableViewButton.snp.makeConstraints { make in
+            make.bottom.equalTo(mapView.snp.bottom).inset(52)
+            make.centerX.equalTo(mapView.snp.centerX)
+            make.height.equalTo(46)
+            make.width.equalTo(mapView.snp.width).dividedBy(5)
+        }
+
+        tableViewButton.addTarget(self, action: #selector(tappedTableViewButton), for: .touchUpInside)
 
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
@@ -112,6 +134,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         if restaurants.count > 0 {
             mapView.addAnnotations(restaurants)
         }
+    }
+
+        // MARK: - Actions
+    @objc func tappedTableViewButton() {
+        print("got to list view")
     }
 
         // MARK: - CLLocationManagerDelegate
