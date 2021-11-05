@@ -10,7 +10,7 @@ import CoreLocation
 import MapKit
 import SnapKit
 
-class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResultsUpdating, MKMapViewDelegate {
+class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UITextFieldDelegate {
 
     private var locationManager: CLLocationManager?
 
@@ -72,11 +72,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
 
         tableViewButton.addTarget(self, action: #selector(tappedTableViewButton), for: .touchUpInside)
 
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Type something here to search"
-        navigationItem.searchController = search
+        let searchTextField: UISearchTextField = UISearchTextField(frame: CGRect(x: 0, y: 0, width: (self.navigationController?.navigationBar.frame.size.width)!, height: 21.0))
+        searchTextField.delegate = self
+        navigationItem.titleView = searchTextField
 
         setupMapView()
     }
@@ -191,10 +189,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         show(RestaurantDetailViewController(restaurant: view.annotation as! Restaurant), sender: self)
     }
 
-        // MARK: - UISearchResultsUpdating
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        print(text)
+        // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let url = URL(string: GooglePlacesConstants.BaseURL + GooglePlacesConstants.Paths.TextSearch), let searchTerm = textField.text {
+            let locationQuery = URLQueryItem(name: "location", value: "\(locationManager?.location?.coordinate.latitude),\(locationManager?.location?.coordinate.longitude)")
+            let textQuery = URLQueryItem(name: "query", value: searchTerm)
+            let keyQuery = URLQueryItem(name: "key", value: GooglePlacesConstants.apiKey)
+            if let finalizedURL = url.appending([locationQuery,textQuery,keyQuery]){
+                let request = URLRequest(url: finalizedURL)
+                URLSession.shared.dataTask(with: request) { [weak self] data, response, error in
+                    guard let data = data, let strongSelf = self else {
+                        print("data is empty \(error?.localizedDescription ?? "")")
+                        return
+                    }
+                    let jsonString = String(data: data, encoding: .utf8)
+                    do {
+                        let nearbyQueryResult = try JSONDecoder().decode(NearbyQueryResult.self, from: data)
+                        DispatchQueue.main.async {
+                            strongSelf.mapView.removeAnnotations(strongSelf.restaurants)
+                            strongSelf.restaurants = []
+                            strongSelf.placeResultPins(nearbyResults: nearbyQueryResult)
+                        }
+                    } catch let error as NSError {
+                        print("decode error \(error.localizedDescription)")
+                        print(String(describing: error))
+                    }
+                }.resume()
+            }
+        }
+        textField.resignFirstResponder()
+        return true
     }
 }
 

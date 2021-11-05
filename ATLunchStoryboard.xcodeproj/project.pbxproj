@@ -26,6 +26,7 @@
 		3DF5C4F82734BD9600CC9FE9 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5C4F72734BD9600CC9FE9 /* RestaurantDetailViewController.swift */; };
 		3DF5C4FB2734C81E00CC9FE9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF5C4FA2734C81E00CC9FE9 /* SDWebImage */; };
 		3DF5C4FD2734C81E00CC9FE9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF5C4FC2734C81E00CC9FE9 /* SDWebImageMapKit */; };
+		3DF5C4FF2734D38900CC9FE9 /* TextQueryResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5C4FE2734D38900CC9FE9 /* TextQueryResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		3DF5C4EC2734003300CC9FE9 /* GooglePlacesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesConstants.swift; sourceTree = "<group>"; };
 		3DF5C4F52734B3D900CC9FE9 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
 		3DF5C4F72734BD9600CC9FE9 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
+		3DF5C4FE2734D38900CC9FE9 /* TextQueryResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextQueryResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 			children = (
 				3D69983E272EA99200F0A0E7 /* NearbyQueryResult.swift */,
 				3D699840272EB6C500F0A0E7 /* Restaurant.swift */,
+				3DF5C4FE2734D38900CC9FE9 /* TextQueryResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				3DF5C4F62734B3D900CC9FE9 /* ResultsTableViewController.swift in Sources */,
 				3D302382272D46D500B8BA64 /* SceneDelegate.swift in Sources */,
 				3D69983F272EA99200F0A0E7 /* NearbyQueryResult.swift in Sources */,
+				3DF5C4FF2734D38900CC9FE9 /* TextQueryResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

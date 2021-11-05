@@ -33,10 +33,10 @@ struct Result: Codable {
     let plusCode: PlusCode
     let rating: Double
     let reference: String
-    let scope: String
+    let scope: String?
     let types: [String]
     let userRatingsTotal: Int
-    let vicinity: String
+    let vicinity: String?
     let priceLevel: Int?
 
     enum CodingKeys: String, CodingKey {
