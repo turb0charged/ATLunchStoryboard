@@ -55,7 +55,7 @@ class RestaurantCalloutView:  UIView{
                     let referenceQuery = URLQueryItem(name: "photo_reference", value: photoRef)
                     let widthQuery = URLQueryItem(name: "maxwidth", value: "100")
                     let heightQuery = URLQueryItem(name: "maxheight", value: "100")
-                    let keyQuery = URLQueryItem(name: "key", value: "AIzaSyDQSd210wKX_7cz9MELkxhaEOUhFP0AkSk")
+                    let keyQuery = URLQueryItem(name: "key", value: GooglePlacesConstants.apiKey)
                     if let finalizedURL = url.appending([referenceQuery,widthQuery,heightQuery,keyQuery]) {
                         restaurantImageView.sd_setImage(with: finalizedURL, placeholderImage: UIImage(systemName: "fork.knife.circle.fill")!)
                     }
@@ -85,7 +85,7 @@ class RestaurantCalloutView:  UIView{
         containerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.left.equalTo(restaurantImageView.snp.right)
+            make.left.equalTo(restaurantImageView.snp.right).offset(16)
             make.right.equalToSuperview()
             make.height.equalToSuperview().dividedBy(3)
         }
@@ -93,7 +93,7 @@ class RestaurantCalloutView:  UIView{
         containerView.addSubview(totalRatingsLabel)
         totalRatingsLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
-            make.left.equalTo(restaurantImageView.snp.right)
+            make.left.equalTo(restaurantImageView.snp.right).offset(16)
             make.right.equalToSuperview()
             make.height.equalToSuperview().dividedBy(3)
         }
@@ -101,7 +101,7 @@ class RestaurantCalloutView:  UIView{
         containerView.addSubview(supportingTextLabel)
         supportingTextLabel.snp.makeConstraints { make in
             make.top.equalTo(totalRatingsLabel.snp.bottom)
-            make.left.equalTo(restaurantImageView.snp.right)
+            make.left.equalTo(restaurantImageView.snp.right).offset(16)
             make.right.equalToSuperview()
             make.height.equalToSuperview().dividedBy(3)
         }

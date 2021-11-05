@@ -25,8 +25,6 @@ class ResultsTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-
-        print("in tableview view did load")
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,6 +45,10 @@ class ResultsTableViewController: UITableViewController {
         cell?.textLabel?.text = restaurants[indexPath.row].title
 
         return cell!
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        show(RestaurantDetailViewController(restaurant: restaurants[indexPath.row]), sender: self)
     }
 
 

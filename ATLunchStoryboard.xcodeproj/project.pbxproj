@@ -22,8 +22,10 @@
 		3D699841272EB6C500F0A0E7 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D699840272EB6C500F0A0E7 /* Restaurant.swift */; };
 		3DA63ABA272D9539009E4F7E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3DA63AB9272D9539009E4F7E /* SnapKit */; };
 		3DF5C4ED2734003300CC9FE9 /* GooglePlacesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5C4EC2734003300CC9FE9 /* GooglePlacesConstants.swift */; };
-		3DF5C4F32734087C00CC9FE9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF5C4F22734087C00CC9FE9 /* SDWebImageMapKit */; };
 		3DF5C4F62734B3D900CC9FE9 /* ResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5C4F52734B3D900CC9FE9 /* ResultsTableViewController.swift */; };
+		3DF5C4F82734BD9600CC9FE9 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5C4F72734BD9600CC9FE9 /* RestaurantDetailViewController.swift */; };
+		3DF5C4FB2734C81E00CC9FE9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF5C4FA2734C81E00CC9FE9 /* SDWebImage */; };
+		3DF5C4FD2734C81E00CC9FE9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3DF5C4FC2734C81E00CC9FE9 /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,7 @@
 		3D699840272EB6C500F0A0E7 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		3DF5C4EC2734003300CC9FE9 /* GooglePlacesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesConstants.swift; sourceTree = "<group>"; };
 		3DF5C4F52734B3D900CC9FE9 /* ResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewController.swift; sourceTree = "<group>"; };
+		3DF5C4F72734BD9600CC9FE9 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DF5C4F32734087C00CC9FE9 /* SDWebImageMapKit in Frameworks */,
+				3DF5C4FB2734C81E00CC9FE9 /* SDWebImage in Frameworks */,
+				3DF5C4FD2734C81E00CC9FE9 /* SDWebImageMapKit in Frameworks */,
 				3DA63ABA272D9539009E4F7E /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,6 +181,7 @@
 			children = (
 				3D302383272D46D500B8BA64 /* ViewController.swift */,
 				3DF5C4F52734B3D900CC9FE9 /* ResultsTableViewController.swift */,
+				3DF5C4F72734BD9600CC9FE9 /* RestaurantDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,7 +204,8 @@
 			name = ATLunchStoryboard;
 			packageProductDependencies = (
 				3DA63AB9272D9539009E4F7E /* SnapKit */,
-				3DF5C4F22734087C00CC9FE9 /* SDWebImageMapKit */,
+				3DF5C4FA2734C81E00CC9FE9 /* SDWebImage */,
+				3DF5C4FC2734C81E00CC9FE9 /* SDWebImageMapKit */,
 			);
 			productName = ATLunchStoryboard;
 			productReference = 3D30237C272D46D500B8BA64 /* ATLunchStoryboard.app */;
@@ -275,7 +281,7 @@
 			mainGroup = 3D302373272D46D500B8BA64;
 			packageReferences = (
 				3DA63AB8272D9539009E4F7E /* XCRemoteSwiftPackageReference "SnapKit" */,
-				3DF5C4F12734087C00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				3DF5C4F92734C81E00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 3D30237D272D46D500B8BA64 /* Products */;
 			projectDirPath = "";
@@ -322,6 +328,7 @@
 			files = (
 				3DF5C4ED2734003300CC9FE9 /* GooglePlacesConstants.swift in Sources */,
 				3D302384272D46D500B8BA64 /* ViewController.swift in Sources */,
+				3DF5C4F82734BD9600CC9FE9 /* RestaurantDetailViewController.swift in Sources */,
 				3D03E11627335D24008408E6 /* RestaurantCalloutView.swift in Sources */,
 				3D302380272D46D500B8BA64 /* AppDelegate.swift in Sources */,
 				3D699841272EB6C500F0A0E7 /* Restaurant.swift in Sources */,
@@ -694,7 +701,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		3DF5C4F12734087C00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		3DF5C4F92734C81E00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -710,9 +717,14 @@
 			package = 3DA63AB8272D9539009E4F7E /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		3DF5C4F22734087C00CC9FE9 /* SDWebImageMapKit */ = {
+		3DF5C4FA2734C81E00CC9FE9 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3DF5C4F12734087C00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = 3DF5C4F92734C81E00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		3DF5C4FC2734C81E00CC9FE9 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3DF5C4F92734C81E00CC9FE9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */

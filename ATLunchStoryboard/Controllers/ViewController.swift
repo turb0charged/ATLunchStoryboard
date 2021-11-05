@@ -39,19 +39,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         return button
     }()
 
-    private var apiKey: String {
-        get {
-            guard let filePath = Bundle.main.path(forResource: "keys", ofType: "plist") else {
-                fatalError("Couldn't find file 'keys.plist'.")
-            }
-            let plist = NSDictionary(contentsOfFile: filePath)
-            guard let value = plist?.object(forKey: "GOOGLE_PLACES_API_KEY") as? String else {
-                fatalError("Couldn't find key 'GOOGLE_PLACES_API_KEY' in 'keys.plist'.")
-            }
-            return value
-        }
-    }
-
     private var restaurants: [Restaurant] = []
 
     override func viewDidLoad() {
@@ -107,7 +94,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
             mapView.setCenter(manager.location?.coordinate ?? mapView.userLocation.coordinate,
                               animated: true)
         }
-        let placesURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurants&location=\(manager.location?.coordinate.latitude.description ?? "")%2C\(manager.location?.coordinate.longitude.description ?? "")&radius=1500&type=restaurant&key=\(apiKey)"
+        let placesURLString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?keyword=restaurants&location=\(manager.location?.coordinate.latitude.description ?? "")%2C\(manager.location?.coordinate.longitude.description ?? "")&radius=1500&type=restaurant&key=\(GooglePlacesConstants.apiKey)"
 
         if let placesURL = URL(string: placesURLString) {
             let request = URLRequest(url: placesURL)
@@ -194,7 +181,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         }
         annotationView?.detailCalloutAccessoryView = detailView
 
+        let button = UIButton(type: .detailDisclosure)
+        annotationView?.rightCalloutAccessoryView = button
+
         return annotationView
+    }
+
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        show(RestaurantDetailViewController(restaurant: view.annotation as! Restaurant), sender: self)
     }
 
         // MARK: - UISearchResultsUpdating
