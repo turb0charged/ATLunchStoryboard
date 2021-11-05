@@ -14,6 +14,11 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
 
     private var locationManager: CLLocationManager?
 
+    private let containerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+
     private let mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.mapType = .standard
@@ -47,6 +52,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         }
     }
 
+    private var restaurants: [Restaurant] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
             // Do any additional setup after loading the view.
@@ -56,14 +63,19 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         locationManager?.delegate = self
         locationManager?.requestWhenInUseAuthorization()
 
-        view.addSubview(mapView)
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalToSuperview()
+        }
+
+        containerView.addSubview(mapView)
         mapView.delegate = self
         mapView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.topMargin)
             make.right.left.bottom.equalToSuperview()
         }
 
-        mapView.addSubview(tableViewButton)
+        containerView.addSubview(tableViewButton)
         tableViewButton.snp.makeConstraints { make in
             make.bottom.equalTo(mapView.snp.bottom).inset(52)
             make.centerX.equalTo(mapView.snp.centerX)
@@ -119,7 +131,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
     }
 
     func placeResultPins(nearbyResults: NearbyQueryResult) {
-        var restaurants: [Restaurant] = []
         nearbyResults.results.forEach { result in
             let newRestaurant = Restaurant(title: result.name,
                                            coordinate: CLLocationCoordinate2D(latitude: result.geometry.location.lat, longitude: result.geometry.location.lng),
@@ -139,6 +150,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
         // MARK: - Actions
     @objc func tappedTableViewButton() {
         print("got to list view")
+        show(ResultsTableViewController(restaurants: restaurants), sender: self)
     }
 
         // MARK: - CLLocationManagerDelegate
@@ -181,8 +193,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate, UISearchResul
             make.height.equalTo(UIScreen.main.bounds.height * 0.10)
         }
         annotationView?.detailCalloutAccessoryView = detailView
-//        let leftAccesoryView = UIImageView(image: UIImage(systemName: "fork.knife.circle.fill")!)
-//        annotationView?.leftCalloutAccessoryView = leftAccesoryView
 
         return annotationView
     }

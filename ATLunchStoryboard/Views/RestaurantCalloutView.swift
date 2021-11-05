@@ -14,7 +14,6 @@ class RestaurantCalloutView:  UIView{
     private lazy var containerView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
         view.backgroundColor = .white
-        view.layer.cornerRadius = 16.0
         return view
     }()
 
